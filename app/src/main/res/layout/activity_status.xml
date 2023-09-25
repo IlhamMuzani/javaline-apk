@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/quicksand_medium"-->
+<!--                android:text="Status Perjalanan Kendaraan"-->
+<!--                android:textSize="@dimen/_18sdp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="@dimen/_25sdp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+<!--                tools:ignore="MissingConstraints" />-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/timertunggu"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/quicksand_semi_bold"-->
+<!--                        android:layout_marginTop="@dimen/_4sdp"-->
+<!--                        android:textSize="@dimen/_12sdp"-->
+<!--                        android:text="00:00:00"-->
+<!--                        android:textColor="@color/Abuabuhitam" />-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/tunggu_muat"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+
+                        <ImageView
+                            android:id="@+id/tunggu_muathijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+
+                        <TextView
+                            android:id="@+id/txvtunggumuat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:textSize="@dimen/_12sdp"
+                            android:text="Tunggu Muat"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/timertunggu"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_40sdp"-->
+<!--                            android:fontFamily="@font/quicksand_semi_bold"-->
+<!--                            android:layout_marginTop="@dimen/_4sdp"-->
+<!--                            android:layout_toEndOf="@+id/txvtunggumuat"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            android:text="00:00:00"-->
+<!--                            android:textColor="@color/Abuabuhitam" />-->
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/loading_muat"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/loading_muathijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:text="Loading Muat"
+                            android:textColor="@color/Abuabuhitam"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/perjalanan_isi"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/perjalanan_isihijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:text="Perjalanan Isi"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/tunggu_bongkar"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/tunggu_bongkarhijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:text="Tunggu Bongkar"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/loading_bongkar"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/loading_bongkarhijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:text="Loading Bongkar"
+                            android:textColor="@color/Abuabuhitam"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/perjalanan_kosong"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/perjalanan_kosonghijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:text="Perjalanan Kosong"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/perbaikan_dijalan"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/perbaikan_dijalanhijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:text="Perbaikan di jalan"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_putih_gradasiatasabawah">
+
+                        <ImageView
+                            android:id="@+id/perbaikan_digarasi"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/colorPrimary" />
+
+                        <ImageView
+                            android:id="@+id/perbaikan_digarasihijau"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_baseline_check_circle_outline_24"
+                            app:tint="@color/hijau" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:text="Perbaikan di garasi"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/Abuabuhitam" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

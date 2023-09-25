@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/bg_btn_lapisanabu" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_15sdp">
+
+        <LinearLayout
+            android:id="@+id/layout_Konfirmasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:adjustViewBounds="true"
+                android:text="Konfirmasi status :"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusloadingmuat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Perbaikan di garasi"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Km Akhir *"
+            android:textStyle="bold"
+            android:textSize="@dimen/_10sdp"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_btn_lapisanabu">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edt_kmperbaikandigarasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@color/white"
+                    android:hint="Masukkan km akhir"
+                    android:inputType="number"
+                    android:textSize="@dimen/_11sdp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_tolakperbaikandigarasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:backgroundTint="@color/red"
+                android:text="Batal" />
+
+            <Button
+                android:id="@+id/btn_konfirmasiperbaikandigarasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Konfirmasi" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.qr_code.Qr_codeActivity">
+
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:autoFocusButtonColor="@color/white"
+        app:flashButtonColor="@color/white"
+        app:flashButtonVisible="true"
+        app:frameColor="@color/white"
+        app:frameCornersSize="@dimen/_40sdp"
+        app:autoFocusButtonVisible="true"
+        app:frameCornersRadius="@dimen/_40sdp"
+        app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameSize="0.75"
+        app:frameThickness="@dimen/_2sdp"
+        app:maskColor="#77000000"/>
+    
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="@string/masukkan_kode_qr"
+        android:textAlignment="center"/>
+
+</LinearLayout>

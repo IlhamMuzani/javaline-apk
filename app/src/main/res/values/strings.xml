@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Javaline</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Profil</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="masukkan_kode_qr">Masukkan kode QR</string>
+    <string name="masukkan_kode">Masukkan Kode</string>
+    <string name="masukkan_password">Masukkan Password</string>
+    <string name="masukkan_password_konfirmasi">Masukkan Password Konfirmasi</string>
+    <string name="content_description_end_icon">content_description_end_icon</string>
+
+</resources>
