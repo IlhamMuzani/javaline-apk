@@ -4,6 +4,7 @@ import com.ilham.javaline.data.model.kendaraan.ResponseKendaraan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanDetail
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanUpdate
 import com.ilham.javaline.data.model.pelanggan.ResponsePelanggan
+import com.ilham.javaline.data.model.tujuan.ResponseTujuan
 import com.ilham.javaline.network.ApiService
 import com.ilham.javaline.data.model.user.ResponseUser
 import retrofit2.Call
@@ -35,6 +36,42 @@ class StatusPresenter (val view: StatusContract.View) : StatusContract.Presenter
             override fun onFailure(call: Call<ResponseKendaraanDetail>, t: Throwable) {
                 view.onLoading(false)
             }
+        })
+    }
+
+    override fun getTujuan() {
+        view.onLoading(true, "loading...")
+        ApiService.endpoint.gettujuan().enqueue(object : Callback<ResponseTujuan>{
+            override fun onResponse(call: Call<ResponseTujuan>, response: Response<ResponseTujuan>) {
+                view.onLoading(false)
+                if (response.isSuccessful){
+                    val responseTujuan: ResponseTujuan? = response.body()
+                    view.onResulttujuan(responseTujuan!!)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseTujuan>, t: Throwable) {
+                view.onLoading(false)
+            }
+
+        })
+    }
+
+    override fun getTujuankosong() {
+        view.onLoading(true, "loading...")
+        ApiService.endpoint.gettujuan().enqueue(object : Callback<ResponseTujuan>{
+            override fun onResponse(call: Call<ResponseTujuan>, response: Response<ResponseTujuan>) {
+                view.onLoading(false)
+                if (response.isSuccessful){
+                    val responseTujuan: ResponseTujuan? = response.body()
+                    view.onResulttujuankosong(responseTujuan!!)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseTujuan>, t: Throwable) {
+                view.onLoading(false)
+            }
+
         })
     }
 
@@ -96,9 +133,9 @@ class StatusPresenter (val view: StatusContract.View) : StatusContract.Presenter
         })
     }
 
-    override fun perjalananIsi(id: Long, user_id: String, km: String) {
+    override fun perjalananIsi(id: Long, user_id: String, km: String, tujuan: String) {
         view.onLoading(true, "Loading..")
-        ApiService.endpoint.perjalanan_isi(id, user_id, km).enqueue(object:Callback<ResponseKendaraanUpdate>{
+        ApiService.endpoint.perjalanan_isi(id, user_id, km, tujuan).enqueue(object:Callback<ResponseKendaraanUpdate>{
             override fun onResponse(
                 call: Call<ResponseKendaraanUpdate>,
                 response: Response<ResponseKendaraanUpdate>
@@ -156,9 +193,9 @@ class StatusPresenter (val view: StatusContract.View) : StatusContract.Presenter
         })
     }
 
-    override fun PerjalananKosong(id: Long, user_id: String, km: String) {
+    override fun PerjalananKosong(id: Long, user_id: String, km: String, tujuan: String) {
         view.onLoading(true, "Loading..")
-        ApiService.endpoint.perjalanan_kosong(id, user_id, km).enqueue(object:Callback<ResponseKendaraanUpdate>{
+        ApiService.endpoint.perjalanan_kosong(id, user_id, km, tujuan).enqueue(object:Callback<ResponseKendaraanUpdate>{
             override fun onResponse(
                 call: Call<ResponseKendaraanUpdate>,
                 response: Response<ResponseKendaraanUpdate>

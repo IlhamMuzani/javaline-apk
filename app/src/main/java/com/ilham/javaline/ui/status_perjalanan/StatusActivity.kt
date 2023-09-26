@@ -15,6 +15,7 @@ import com.ilham.javaline.data.model.kendaraan.ResponseKendaraan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanDetail
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanUpdate
 import com.ilham.javaline.data.model.pelanggan.ResponsePelanggan
+import com.ilham.javaline.data.model.tujuan.ResponseTujuan
 import com.ilham.javaline.data.model.user.ResponseUser
 import com.ilham.javaline.ui.fragment.UserActivity
 import com.ilham.javaline.ui.login.LoginActivity
@@ -43,6 +44,8 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
     lateinit var prefsManager: PrefsManager
 
     private lateinit var editSpinner: Spinner
+    private lateinit var editTujuan: Spinner
+    private lateinit var editTujuankosong: Spinner
 
     private lateinit var sLoading: SweetAlertDialog
     private lateinit var sSuccess: SweetAlertDialog
@@ -64,7 +67,6 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
 
     override fun onStart() {
         super.onStart()
-        presenter.getPelanggan()
         presenter.getDetail( Constant.KENDARAAN_ID.toString() )
     }
 
@@ -96,7 +98,7 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         }
 
         perjalanan_isi.setOnClickListener {
-            showPerjalananIsi()
+            presenter.getTujuan()
         }
 
         tunggu_bongkar.setOnClickListener {
@@ -108,7 +110,7 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         }
 
         perjalanan_kosong.setOnClickListener {
-            showPerjalananKosong()
+            presenter.getTujuankosong()
         }
 
         perbaikan_dijalan.setOnClickListener {
@@ -165,7 +167,8 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.dialog_loadingmuat, null)
 
-        editSpinner = view.findViewById(R.id.edtpelanggan)
+        editSpinner = view.edtpelanggan
+
         spinnerPelanggan(editSpinner, responsePelanggan)
 
         view.btn_tolakloadingmuat.setOnClickListener {
@@ -186,9 +189,13 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         dialog.show()
     }
 
-    override fun showPerjalananIsi() {
+    override fun showPerjalananIsi(responseTujuan: ResponseTujuan) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.dialog_konfirmasi, null)
+
+        editTujuan = view.edttujuan
+
+        spinnerTujuan(editTujuan, responseTujuan)
 
         view.btn_tolakperjalananisi.setOnClickListener {
             dialog.dismiss()
@@ -196,10 +203,12 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         view.btn_konfirmasiperjalananisi.setOnClickListener {
 
             val km = view.edt_kmperjalananisi.text
-            if (km.isNullOrEmpty()) {
+            if (Constant.Tujuan_id == 0) {
+                showError("Pilih Tujuan !")
+            } else if (km.isNullOrEmpty()) {
                 showError("Masukkan Km")
             } else {
-                presenter.perjalananIsi(Constant.KENDARAAN_ID, prefsManager.prefsId, km.toString())
+                presenter.perjalananIsi(Constant.KENDARAAN_ID, prefsManager.prefsId, km.toString(), Constant.Tujuan_name.toString())
                 dialog.dismiss()
             }
         }
@@ -245,9 +254,13 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         dialog.show()
     }
 
-    override fun showPerjalananKosong() {
+    override fun showPerjalananKosong(responseTujuan: ResponseTujuan) {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.dialog_perjalanankosong, null)
+
+        editTujuankosong = view.edttujuankosong
+
+        spinnerTujuankosong(editTujuankosong, responseTujuan)
 
         view.btn_tolakperjalanankosong.setOnClickListener {
             dialog.dismiss()
@@ -255,10 +268,12 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         view.btn_konfirmasiperjalanankosong.setOnClickListener {
 
             val km = view.edt_kmperjalanankosong.text
-            if (km.isNullOrEmpty()) {
+            if (Constant.Tujuan_id == 0) {
+                showError("Pilih Tujuan !")
+            } else if (km.isNullOrEmpty()) {
                 showError("Masukkan Km")
             } else {
-                presenter.PerjalananKosong(Constant.KENDARAAN_ID, prefsManager.prefsId, km.toString())
+                presenter.PerjalananKosong(Constant.KENDARAAN_ID, prefsManager.prefsId, km.toString(),Constant.Tujuan_name.toString())
                 dialog.dismiss()
             }
         }
@@ -308,12 +323,16 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
         dialog.show()
     }
 
+    override fun onResulttujuan(responseTujuan: ResponseTujuan) {
+        showPerjalananIsi(responseTujuan)
+    }
+
+    override fun onResulttujuankosong(responseTujuan: ResponseTujuan) {
+        showPerjalananKosong(responseTujuan)
+    }
+
     override fun onResultpelanggan(responsePelanggan: ResponsePelanggan) {
-        if (::editSpinner.isInitialized) {
-            spinnerPelanggan(editSpinner, responsePelanggan)
-        } else {
-            showError("belum")
-        }
+        showLoadingMuat(responsePelanggan)
     }
 
     override fun onResultDetail(responseKendaraanDetail: ResponseKendaraanDetail) {
@@ -487,8 +506,8 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
                     }
                     else -> {
                         val pelanggan = responsePelanggan.data[position - 1].nama_alias
-                        Constant.Kendar_id = responsePelanggan.data[position - 1].id!!.toInt()
-                        Constant.Kendar_name = pelanggan.toString()
+                        Constant.Pelanggan_id = responsePelanggan.data[position - 1].id!!.toInt()
+                        Constant.Pelanggan_name = pelanggan.toString()
                     }
 
                 }
@@ -501,6 +520,75 @@ class StatusActivity : AppCompatActivity(), StatusContract.View {
     }
 
 
+    fun spinnerTujuan(edttujuan: Spinner, responseTujuan: ResponseTujuan) {
+
+        val arrayString = java.util.ArrayList<String>()
+        arrayString.add("Pilih Tujuan")
+        for (kendaraan in responseTujuan.data) {
+            arrayString.add(kendaraan.nama!!)
+        }
+
+        val adapter = ArrayAdapter(this, R.layout.item_spinner, arrayString.toTypedArray())
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        edttujuan.adapter = adapter
+        val selection = adapter.getPosition(Constant.Tujuan_name)
+        edttujuan.setSelection(selection)
+        edttujuan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position) {
+                    0 -> {
+                        Constant.Tujuan_id = 0
+                        Constant.Tujuan_name = "Pilih Tujuan"
+                    }
+                    else -> {
+                        val pelanggan = responseTujuan.data[position - 1].nama
+                        Constant.Tujuan_id = responseTujuan.data[position - 1].id!!.toInt()
+                        Constant.Tujuan_name = pelanggan.toString()
+                    }
+
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+    }
+
+    fun spinnerTujuankosong(edttujuankosong: Spinner, responseTujuan: ResponseTujuan) {
+
+        val arrayString = java.util.ArrayList<String>()
+        arrayString.add("Pilih Tujuan")
+        for (kendaraan in responseTujuan.data) {
+            arrayString.add(kendaraan.nama!!)
+        }
+
+        val adapter = ArrayAdapter(this, R.layout.item_spinner, arrayString.toTypedArray())
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        edttujuankosong.adapter = adapter
+        val selection = adapter.getPosition(Constant.Tujuan_name)
+        edttujuankosong.setSelection(selection)
+        edttujuankosong.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position) {
+                    0 -> {
+                        Constant.Tujuan_id = 0
+                        Constant.Tujuan_name = "Pilih Tujuan"
+                    }
+                    else -> {
+                        val pelanggan = responseTujuan.data[position - 1].nama
+                        Constant.Tujuan_id = responseTujuan.data[position - 1].id!!.toInt()
+                        Constant.Tujuan_name = pelanggan.toString()
+                    }
+
+                }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        }
+
+    }
     // Method ini dipanggil ketika Anda ingin menghentikan timer
     private fun stopTimer() {
         isTimerRunning = false

@@ -3,9 +3,9 @@ package com.ilham.javaline.data.model
 class Constant {
     companion object {
 
-        var IP: String = "http://192.168.2.138/javaline/"
+//        var IP: String = "http://192.168.2.138/javaline/"
 //        var IP: String = "http://192.168.1.212/javaline/"
-//        var IP: String = "https://javaline.id/"
+        var IP: String = "https://javaline.id/"
         var IP_IMAGE: String = IP + "public/storage/uploads/"
 
         const val LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -18,6 +18,9 @@ class Constant {
 
         var Pelanggan_id: Int = 0
         var Pelanggan_name: String = ""
+
+        var Tujuan_id: Int = 0
+        var Tujuan_name: String = ""
 
         var UPDATE: Boolean = false
     }

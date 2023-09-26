@@ -4,6 +4,7 @@ import com.ilham.javaline.data.model.kendaraan.ResponseKendaraan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanDetail
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanUpdate
 import com.ilham.javaline.data.model.pelanggan.ResponsePelanggan
+import com.ilham.javaline.data.model.tujuan.ResponseTujuan
 import com.ilham.javaline.data.model.user.ResponseUser
 import com.ilham.javaline.data.model.user.ResponseUserdetail
 import retrofit2.Call
@@ -40,6 +41,10 @@ interface ApiEndpoint {
     @GET("list-pelanggan")
     fun getpelanggan(
     ): Call<ResponsePelanggan>
+
+    @GET("list-tujuan")
+    fun gettujuan(
+    ): Call<ResponseTujuan>
 
     @POST("kendaraan-search")
     fun Searchkendaraan(
@@ -82,6 +87,7 @@ interface ApiEndpoint {
         @Path("id") id: Long,
         @Query("user_id") user_id: String,
         @Query("km") km: String,
+        @Query("tujuan") tujuan: String,
         ): Call<ResponseKendaraanUpdate>
 
     @POST("kendaraan-tunggubongkar/{id}")
@@ -102,6 +108,7 @@ interface ApiEndpoint {
         @Path("id") id: Long,
         @Query("user_id") user_id: String,
         @Query("km") km: String,
+        @Query("tujuan") tujuan: String,
         ): Call<ResponseKendaraanUpdate>
 
     @POST("kendaraan-perbaikandijalan/{id}")
