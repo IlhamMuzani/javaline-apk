@@ -3,6 +3,7 @@ package com.ilham.javaline.ui.status_perjalanan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanDetail
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanUpdate
+import com.ilham.javaline.data.model.pelanggan.ResponsePelanggan
 import com.ilham.javaline.network.ApiService
 import com.ilham.javaline.data.model.user.ResponseUser
 import retrofit2.Call
@@ -37,6 +38,24 @@ class StatusPresenter (val view: StatusContract.View) : StatusContract.Presenter
         })
     }
 
+    override fun getPelanggan() {
+        view.onLoading(true, "loading...")
+        ApiService.endpoint.getpelanggan().enqueue(object : Callback<ResponsePelanggan>{
+            override fun onResponse(call: Call<ResponsePelanggan>, response: Response<ResponsePelanggan>) {
+                view.onLoading(false)
+                if (response.isSuccessful){
+                    val responsePelanggan: ResponsePelanggan? = response.body()
+                    view.onResultpelanggan(responsePelanggan!!)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponsePelanggan>, t: Throwable) {
+                view.onLoading(false)
+            }
+
+        })
+    }
+
     override fun tungguMuat(id: Long, user_id: String, km: String) {
         view.onLoading(true,"Loading..")
         ApiService.endpoint.tunggu_muat(id, user_id, km).enqueue(object : Callback<ResponseKendaraanUpdate>{
@@ -57,9 +76,9 @@ class StatusPresenter (val view: StatusContract.View) : StatusContract.Presenter
         })
     }
 
-    override fun loadingMuat(id: Long, user_id: String) {
+    override fun loadingMuat(id: Long, user_id: String, pelanggan_id:String) {
         view.onLoading(true, "Loading..")
-        ApiService.endpoint.loading_muat(id, user_id).enqueue(object:Callback<ResponseKendaraanUpdate>{
+        ApiService.endpoint.loading_muat(id, user_id, pelanggan_id).enqueue(object:Callback<ResponseKendaraanUpdate>{
             override fun onResponse(
                 call: Call<ResponseKendaraanUpdate>,
                 response: Response<ResponseKendaraanUpdate>

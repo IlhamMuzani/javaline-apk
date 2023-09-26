@@ -3,6 +3,7 @@ package com.ilham.javaline.network
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraan
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanDetail
 import com.ilham.javaline.data.model.kendaraan.ResponseKendaraanUpdate
+import com.ilham.javaline.data.model.pelanggan.ResponsePelanggan
 import com.ilham.javaline.data.model.user.ResponseUser
 import com.ilham.javaline.data.model.user.ResponseUserdetail
 import retrofit2.Call
@@ -35,6 +36,10 @@ interface ApiEndpoint {
     fun getkendaraan(
         @Path("id") id: Long,
     ): Call<ResponseKendaraan>
+
+    @GET("list-pelanggan")
+    fun getpelanggan(
+    ): Call<ResponsePelanggan>
 
     @POST("kendaraan-search")
     fun Searchkendaraan(
@@ -69,6 +74,7 @@ interface ApiEndpoint {
     fun loading_muat(
         @Path("id") id: Long,
         @Query("user_id") user_id: String,
+        @Query("pelanggan_id") pelanggan_id: String,
     ): Call<ResponseKendaraanUpdate>
 
     @POST("kendaraan-perjalananisi/{id}")

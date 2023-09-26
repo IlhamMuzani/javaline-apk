@@ -47,6 +47,47 @@
 
         </LinearLayout>
 
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pelanggan *"
+            android:textStyle="bold"
+            android:textSize="@dimen/_10sdp"
+            android:layout_gravity="start"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_btn_lapisanabu">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/edtpelanggan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:background="@color/white"
+                    android:hint="Pelanggan"
+                    android:inputType="text"
+                    android:textSize="@dimen/_11sdp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
